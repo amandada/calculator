@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calculator</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.5/angular.min.js"></script>
+</head>
+<body ng-app="myModule">
+    <div class="container"ng-controller="calculator" >
+        <div class="row" >
+            <form action="">
+                <input type="text" class="form-cntrol"  style="margin-bottom:20px" ng-model="result">
+                <div class="row" style="padding-bottom:20px">
+                        <div class="col-md-3" ng-repeat="k in ['+','-','*','/']"><button type="button" class="btn btn-secondary" ng-click="doCapture(k)">{{k}}</button></div>
+                </div>
+                <div class="row"  style="padding-bottom:20px" ng-repeat="i in [0,3,6]">
+                        <div class="col-md-4" ng-repeat="j in [1,2,3]"><button type="button" class="btn btn-secondary" ng-click="doCapture(i + j)">{{i + j}}</button></div>
+                </div>
+                <div class="row"  style="padding-bottom:20px">
+                        <div class="col-md-4"><button type="button" class="btn btn-secondary" ng-click="doClear()">CLR</button></button></div>
+                        <div class="col-md-4"><button type="button" class="btn btn-secondary" ng-click="doCapture('0')">0</button></button></div>
+                        <div class="col-md-4"><button type="button" class="btn btn-secondary" ng-click="doCalculate('=')">=</button></button></div>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script>
+            angular.module('myModule',[]).controller('calculator',function($scope){
+                $scope.result = "";
+                $scope.doCapture = function (val) {
+                    $scope.result = $scope.result + "" + val;
+                };
+                $scope.doCalculate = function () {
+                    $scope.result = eval($scope.result);
+                };
+                $scope.doClear = function () {
+                    $scope.result = "";
+                };
+            });
+
+    </script>
+</body>
+</html>
